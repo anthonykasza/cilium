@@ -154,6 +154,10 @@ func defaultProxyPortMap() proxyPortsMap {
 			ProxyType: types.ProxyTypeHTTP,
 			Ingress:   true,
 		},
+		types.TLSProxyName: {
+			ProxyType: types.ProxyTypeTLS,
+			Ingress:   true,
+		},
 		types.DNSProxyName: {
 			ProxyType: types.ProxyTypeDNS,
 			Ingress:   false,
@@ -298,7 +302,7 @@ func (p *Proxy) findProxyPortByType(l7Type types.ProxyType, listener string, ing
 		}
 		log.Debugf("findProxyPortByType: can not find crd listener %s from %v", listener, p.proxyPorts)
 		return "", nil
-	case types.ProxyTypeDNS, types.ProxyTypeHTTP:
+	case types.ProxyTypeDNS, types.ProxyTypeHTTP, types.ProxyTypeTLS:
 		// Look up by the given type
 	default:
 		// "Unknown" parsers are assumed to be Proxylib (TCP) parsers, which

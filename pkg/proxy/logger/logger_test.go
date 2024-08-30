@@ -65,6 +65,9 @@ func mockLogRecord() *LogRecord {
 			QTypes:            []uint16{dns.TypeA, dns.TypeAAAA},
 			AnswerTypes:       []uint16{dns.TypeA, dns.TypeAAAA},
 		}),
+		LogTags.TLS(&accesslog.LogRecordTLS{
+			SNI: "example.com",
+		}),
 	)
 }
 

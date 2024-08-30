@@ -8,6 +8,8 @@ import (
 	"net/netip"
 	"net/url"
 
+	"crypto/tls"
+
 	"github.com/cilium/cilium/pkg/labels"
 )
 
@@ -190,6 +192,9 @@ type LogRecord struct {
 	// DNS contains information for DNS request/responses
 	DNS *LogRecordDNS `json:"DNS,omitempty"`
 
+	// TLS contains information for TLS request/responses
+	TLS *LogRecordTLS `json:"TLS,omitempty"`
+
 	// L7 contains information about generic L7 protocols
 	L7 *LogRecordL7 `json:"L7,omitempty"`
 }
@@ -294,6 +299,13 @@ type LogRecordDNS struct {
 	// https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 	// Use github.com/cilium/dns.TypeToString map to retrieve string representation
 	AnswerTypes []uint16 `json:"AnswerTypes,omitempty"`
+}
+
+// LogRecordTLS contains the TLS specific portion of a log record
+type LogRecordTLS struct {
+	// SNI
+	// https://github.com/cilium/cilium/issues/28513
+	SNI string `json:"SNI,omitempty"`
 }
 
 // LogRecordL7 contains the generic L7 portion of a log record

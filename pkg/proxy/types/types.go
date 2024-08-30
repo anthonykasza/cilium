@@ -13,6 +13,9 @@ const (
 	// ProxyTypeCRD specifies a proxy configured via CiliumEnvoyConfig CRD
 	ProxyTypeCRD ProxyType = "crd"
 
+	// TLS
+	ProxyTypeTLS ProxyType = "tls"
+
 	DNSProxyName = "cilium-dns-egress"
 )
 

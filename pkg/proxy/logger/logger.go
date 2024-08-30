@@ -195,6 +195,13 @@ func (logTags) DNS(d *accesslog.LogRecordDNS) LogTag {
 	}
 }
 
+// TLS attaches TLS information to the log record
+func (logTags) TLS(d *accesslog.LogRecordTLS) LogTag {
+	return func(lr *LogRecord) {
+		lr.TLS = t
+	}
+}
+
 // L7 attaches generic L7 information to the log record
 func (logTags) L7(h *accesslog.LogRecordL7) LogTag {
 	return func(lr *LogRecord) {
